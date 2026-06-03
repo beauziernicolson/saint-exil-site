@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Newsletter — Étienne De Saint-Exil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <a href="index.html" class="brand" aria-label="Accueil">
+      <span class="brand-name">ÉTIENNE DE SAINT-EXIL</span>
+      <span class="brand-line"><i></i>ÉCRIVAIN<i></i></span>
+    </a>
+
+    <button class="menu-btn" aria-label="Ouvrir le menu">
+      <span></span><span></span>
+    </button>
+
+    <nav class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="biography.html">Biographie</a>
+      <a href="oeuvres.html">Œuvres</a>
+      <a href="actualite.html">Actualité</a>
+      <a class="active" href="newsletter.html">Newsletter</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="newsletter-page">
+
+    <section class="newsletter-hero">
+      <span class="section-label">NEWSLETTER</span>
+      <h1>Rejoignez le cercle des lecteurs</h1>
+      <p>Recevez en avant-première les nouvelles publications, conférences, événements littéraires et réflexions d’Étienne De Saint-Exil.</p>
+    </section>
+
+    <section class="newsletter-layout">
+      <div class="newsletter-card">
+
+        <div class="newsletter-icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="none" stroke-width="1.8">
+            <path d="M14 20h36a4 4 0 0 1 4 4v20a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4V24a4 4 0 0 1 4-4z" />
+            <path d="M14 24l18 13 18-13" />
+            <path d="M25 33v12" stroke-linecap="round" />
+            <path d="M39 33v12" stroke-linecap="round" />
+          </svg>
+        </div>
+
+        <h2>Restez informé</h2>
+
+        <p>Inscrivez-vous pour suivre l’actualité de l’auteur, ses sorties de livres, ses conférences et ses projets artistiques.</p>
+
+        <form class="newsletter-form">
+          <input type="email" placeholder="Votre adresse e-mail" required aria-label="Votre adresse e-mail">        
+  <input
+    type="text"
+    name="firstname"
+    placeholder="Prénom"
+    required
+    aria-label="Prénom">
+
+  <input
+    type="text"
+    name="lastname"
+    placeholder="Nom"
+    required
+    aria-label="Nom">
+          <button type="submit">S’abonner</button>
+        </form>
+
+        <div id="newsletter-status" class="newsletter-status" aria-live="polite"></div>
+
+        <small>Aucun spam. Seulement les nouvelles importantes autour de l’œuvre et des événements.</small>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var form = document.querySelector('.newsletter-form');
+      var status = document.getElementById('newsletter-status');
+      if (form && status) {
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+          status.textContent = 'Merci pour votre inscription.';
+          status.classList.add('visible');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
