@@ -48,6 +48,23 @@
     <div class="books-grid" id="booksGrid"></div>
   </section>
 
+  <div class="book-modal" id="bookModal" aria-hidden="true">
+    <div class="book-modal-backdrop" data-close-modal></div>
+
+    <div class="book-modal-content" role="dialog" aria-modal="true">
+      <button class="book-modal-close" type="button" aria-label="Fermer la fiche du livre">×</button>
+
+      <img class="book-modal-cover" src="" alt="" />
+
+      <div class="book-modal-info">
+        <span class="section-label">ŒUVRE</span>
+        <h2 id="bookModalTitle"></h2>
+        <p id="bookModalSummary"></p>
+        <a id="bookModalBuy" class="book-buy-btn" href="#" target="_blank" rel="noopener">Acheter le livre</a>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
