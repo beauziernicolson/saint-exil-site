@@ -3,29 +3,364 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Étienne De Saint-Exil — Écrivain</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <title>Étienne De Saint-Exil | Écrivain</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background: #050403;
+      color: #f5efe4;
+      overflow-x: hidden;
+    }
+
+    .page {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 30% 45%, rgba(188, 127, 36, 0.18), transparent 35%),
+        radial-gradient(circle at 70% 40%, rgba(255, 255, 255, 0.05), transparent 25%),
+        linear-gradient(90deg, #090704 0%, #050403 45%, #020202 100%);
+      position: relative;
+    }
+
+    header {
+      width: 100%;
+      height: 88px;
+      padding: 0 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(12px);
+      position: relative;
+      z-index: 20;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand img {
+      width: 130px;
+      position:relative;
+      left:30px;
+      height: auto;
+    }
+
+    .brand-text h2 {
+      font-size: 20px;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .brand-text span {
+      display: block;
+      margin-top: 4px;
+      color: #d7a83d;
+      font-size: 12px;
+      letter-spacing: 8px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+
+    nav a {
+      color: #f4ede2;
+      text-decoration: none;
+      font-size: 17px;
+      transition: 0.3s ease;
+      position: relative;
+    }
+
+    nav a.active,
+    nav a:hover {
+      color: #d7a83d;
+    }
+
+    nav a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -16px;
+      width: 100%;
+      height: 1px;
+      background: #d7a83d;
+    }
+
+    .hero {
+      min-height: calc(100vh - 88px);
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 40px 80px 0;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      width: 50%;
+      max-width: 720px;
+      text-align: center;
+      z-index: 5;
+      padding-bottom: 40px;
+    }
+
+    .main-blason {
+      width: 350px;
+      margin-bottom:-200px;
+      position:relative;
+      top:-100px;
+      height:305px;
+      width: 400px;
+      filter: drop-shadow(0 0 28px rgba(202, 151, 55, 0.35));
+    }
+
+    .hero h1 {
+      font-size: 50px;
+      line-height: 1.08;
+      font-weight: 400;
+      letter-spacing: 10px;
+      text-transform: uppercase;
+      color: #f3efe7;
+      text-shadow: 0 8px 18px rgba(0,0,0,.8);
+    }
+
+    .subtitle {
+      margin: 18px auto 26px;
+      color: #d7a83d;
+      font-size: 24px;
+      letter-spacing: 13px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+    }
+
+    .subtitle::before,
+    .subtitle::after {
+      content: "";
+      width: 90px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #d7a83d);
+    }
+
+    .subtitle::after {
+      background: linear-gradient(90deg, #d7a83d, transparent);
+    }
+
+    .divider {
+      width: 430px;
+      max-width: 80%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(215,168,61,.7), transparent);
+      margin: 0 auto 26px;
+      position: relative;
+    }
+
+    .divider::after {
+      content: "◇";
+      position: absolute;
+      left: 50%;
+      top: -12px;
+      transform: translateX(-50%);
+      color: #d7a83d;
+      font-size: 22px;
+    }
+
+    .intro {
+      width: 420px;
+      max-width: 90%;
+      margin: 0 auto 28px;
+      font-size: 14.5px;
+      line-height: 1.45;
+      color: #f1e9dc;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 22px;
+      padding: 18px 30px;
+      border: 1px solid #d7a83d;
+      color: #d7a83d;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      font-weight: 600;
+      border-radius: 4px;
+      background: rgba(0,0,0,.28);
+      transition: .3s ease;
+    }
+
+    .cta:hover {
+      background: #d7a83d;
+      color: #050403;
+    }
+
+    .portrait {
+      position: absolute;
+      right: 300px;
+      bottom: 200px;
+      height: 600px;
+      /*max-height: 900px;*/
+      z-index: 4;
+      filter: drop-shadow(-40px 0 45px rgba(0,0,0,.9));
+    }
+
+    .name-bg {
+      position: absolute;
+      right: 40px;
+      top: 80px;
+      font-size: 84px;
+      line-height: 1.2;
+      color: rgba(255,255,255,.035);
+      font-style: italic;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .quote-card {
+      position: absolute;
+      right: 70px;
+      bottom: 72px;
+      width: 300px;
+      padding: 42px 40px;
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 8px;
+      background: rgba(9,9,9,.62);
+      backdrop-filter: blur(12px);
+      z-index: 8;
+    }
+
+    .quote-card .mark {
+      color: #d7a83d;
+      font-size: 34px;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .quote-card p {
+      font-size: 20px;
+      line-height: 1.45;
+      font-style: italic;
+      color: #f3eadf;
+    }
+
+    .quote-line {
+      width: 90px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #d7a83d, transparent);
+      margin: 22px auto 0;
+    }
+
+    .bottom-card {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 63%;
+      height: 118px;
+      background: #f3eee6;
+      color: #4b443b;
+      display: flex;
+      align-items: center;
+      padding-left: 92px;
+      z-index: 10;
+      clip-path: polygon(0 0, 91% 0, 100% 100%, 0% 100%);
+    }
+
+    .bottom-card .feather {
+      font-size: 52px;
+      opacity: .28;
+      color: #b98732;
+      margin-right: 42px;
+    }
+
+    .bottom-title {
+      color: #c18431;
+      font-size: 15px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding-right: 36px;
+      margin-right: 36px;
+      border-right: 1px solid rgba(100,70,40,.45);
+      font-family: Arial, sans-serif;
+    }
+
+    .bottom-card p {
+      width: 500px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 1000px) {
+      header {
+        padding: 0 24px;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hero {
+        padding: 35px 20px 0;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-left {
+        width: 100%;
+        padding-bottom: 40px;
+      }
+
+      .portrait {
+        position: relative;
+        right: auto;
+        height: 520px;
+        margin-top: -40px;
+      }
+
+      .quote-card,
+      .bottom-card,
+      .name-bg {
+        display: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <main class="hero">
-    <div class="bg-glow bg-glow-left"></div>
-    <div class="bg-glow bg-glow-right"></div>
+  <main class="page">
 
     <header class="navbar">
-      <a href="#" class="brand" aria-label="Accueil">
-        <span class="brand-name">ÉTIENNE DE SAINT-EXIL</span>
-        <span class="brand-line"><i></i>ÉCRIVAIN<i></i></span>
-      </a>
+      <div class="brand">
+        <img src="blasons.png" alt="Logo Étienne De Saint-Exil">
+        <div class="brand-text">
+          <h2>Étienne De Saint-Exil</h2>
+          <span>Écrivain</span>
+        </div>
+      </div>
 
       <button class="menu-btn" aria-label="Ouvrir le menu">
         <span></span><span></span>
       </button>
 
       <nav class="nav-links">
-        <a class="active" href="#">Accueil</a>
+        <a href="index.html" class="active">Accueil</a>
         <a href="biography.html">Biographie</a>
         <a href="oeuvres.html">Œuvres</a>
         <a href="actualite.html">Actualité</a>
@@ -34,57 +369,63 @@
       </nav>
     </header>
 
-    <section class="hero-content">
-      <div class="copy-block">
+    <section class="hero">
+
+      <div class="name-bg">
+        Étienne<br>
+        De<br>
+        Saint-Exil
+      </div>
+
+      <div class="hero-left">
+        <img src="blasons.png" alt="Blason FSE" class="main-blason">
+
         <h1>
-          Bienvenue dans<br>
-          l’univers de<br>
-          l’écrivain<br>
-          <span>Étienne De Saint-Exil</span>
+          Étienne<br>
+          De Saint-Exil
         </h1>
-        <div class="small-divider"></div>
-        <p>
-          Des mots pour explorer l’âme humaine,<br>
-          interroger le monde et éclairer les silences.<br>
-          Découvrez un univers littéraire profondément<br>
+
+        <div class="subtitle">Écrivain</div>
+
+        <div class="divider"></div>
+
+        <p class="intro">
+          Des mots pour explorer l’âme humaine,
+          interroger le monde et éclairer les silences.
+          Découvrez un univers littéraire profondément
           humain, sincère et inspirant.
         </p>
-        <a href="#" class="cta">DÉCOUVRIR SON UNIVERS <b>→</b></a>
+
+        <a href="oeuvres.html" class="cta">
+          Découvrir son univers
+          <span>→</span>
+        </a>
       </div>
 
-      <figure class="portrait-wrap">
-        <img src="portrait.png" alt="Portrait de Étienne De Saint-Exil" class="portrait" />
-      </figure>
+      <img src="port.png" alt="Portrait Étienne De Saint-Exil" class="portrait">
 
-      <div class="signature-bg">Étienne<br>De<br>Saint-Exil</div>
-
-      <aside class="quote-card">
-        <div class="quote-mark">“</div>
-        <p>Écrire, c’est chercher<br>la lumière là où le<br>monde voit l’ombre.</p>
-        <span></span>
-        <strong>É. De Saint-Exil</strong>
-      </aside>
-    </section>
-
-    <section class="bottom-panel">
-      <div class="feather">⌒</div>
-      <div class="keywords">
-        <span>LITTÉRATURE</span>
-        <span>RÉFLEXION</span>
-        <span>HUMANITÉ</span>
-      </div>
-      <div class="panel-line"></div>
-      <div class="panel-text">
+      <div class="quote-card">
+        <div class="mark">“</div>
         <p>
-          À travers ses œuvres, Étienne De Saint-Exil donne voix à<br>
-          des histoires intimes et universelles. Ses textes, ancrés dans<br>
-          le réel, touchent le cœur et éveillent les consciences.
+          Écrire, c’est chercher<br>
+          la lumière là où le<br>
+          monde voit l’ombre.
         </p>
-        <a href="#">EN SAVOIR PLUS <b>→</b></a>
+        <div class="quote-line"></div>
       </div>
-    </section>
-  </main>
 
-  <script src="script.js"></script>
+      <div class="bottom-card">
+        <div class="feather">⌁</div>
+        <div class="bottom-title">Littérature</div>
+        <p>
+          À travers ses œuvres, Étienne De Saint-Exil donne voix à
+          des histoires intimes et universelles. Ses textes, ancrés dans
+          le réel, résonnent comme des échos de nos propres vies.
+        </p>
+      </div>
+
+    </section>
+
+  </main>
 </body>
 </html>

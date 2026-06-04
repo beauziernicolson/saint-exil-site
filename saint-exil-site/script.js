@@ -7,7 +7,7 @@ btn?.addEventListener('click', () => {
 
 const books = [
   {
-    title: "Comme un cimetiere debout en moi",
+    title: "Comme un cimetière debout en moi",
     cover: "comme.jpeg",
     summary: `Comme un cimetière debout en moi dépeint la déchéance psychologique d'un homme confiné, luttant contre la faim et l'isolement alors que le chaos règne dehors. Ce roman explore la fragilité masculine et le poids des souvenirs à travers la transformation du protagoniste en une carcasse impuissante. L'œuvre analyse le traumatisme de la claustration et la violence urbaine, transformant l'intime en un cimetière de souvenirs brisés.`,
     buyText: "Acheter sur Amazon",
@@ -22,7 +22,7 @@ const books = [
   },
   {
     title: "Les nues mendiantes",
-    cover: "oeuvres4.jpg",
+    cover: "night.jpeg",
     summary: `Résumé à ajouter prochainement.`,
     buyText: "Lien d’achat à venir",
     buyLink: "#"
