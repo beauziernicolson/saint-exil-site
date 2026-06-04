@@ -847,11 +847,11 @@ main.hero .navbar {
   max-width: 460px;
   padding-bottom: 80px;
   transform: scale(0.88);
-  transform-origin: center;
+  transform-origin: center top;
 }
 
 .hero-crest {
-  width: clamp(95px, 10vw, 145px);
+  width: clamp(85px, 8vw, 125px);
   height: auto;
   object-fit: contain;
   margin: 0 auto;
@@ -862,8 +862,8 @@ main.hero .navbar {
 
 .hero-logo-block h1 {
   font-family: "Playfair Display", serif;
-  font-size: clamp(2.8rem, 4.8vw, 4.8rem);
-  line-height: .95;
+  font-size: clamp(2.6rem, 4.6vw, 4.9rem);
+  line-height: .96;
   letter-spacing: .075em;
   font-weight: 500;
   color: #f6eee3;
@@ -960,9 +960,9 @@ main.hero .navbar {
 .hero-author-v2 {
   position: absolute;
   z-index: 4;
-  right: 4vw;
-  bottom: 35px;
-  width: min(48vw, 620px);
+  right: 5vw;
+  bottom: 45px;
+  width: min(45vw, 560px);
   margin: 0;
 }
 
@@ -998,10 +998,10 @@ main.hero .navbar {
   z-index: 10;
   right: 4vw;
   top: auto;
-  bottom: 65px;
-  width: 240px;
+  bottom: 75px;
+  width: 235px;
   height: auto;
-  min-height: 160px;
+  min-height: 155px;
   border: 1px solid rgba(255,255,255,.06);
   border-radius: 10px;
   background: rgba(16,16,15,.72);
@@ -1009,7 +1009,7 @@ main.hero .navbar {
 }
 
 .quote-card-v2 p {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   line-height: 1.35;
 }
 
