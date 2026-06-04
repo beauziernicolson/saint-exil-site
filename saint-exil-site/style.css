@@ -844,23 +844,26 @@ main.hero .navbar {
   position: relative;
   z-index: 8;
   text-align: center;
-  max-width: 560px;
+  max-width: 460px;
   padding-bottom: 80px;
+  transform: scale(0.88);
+  transform-origin: center;
 }
 
 .hero-crest {
-  width: clamp(78px, 8vw, 118px);
+  width: clamp(95px, 10vw, 145px);
   height: auto;
   object-fit: contain;
-  margin: 0 auto 22px;
+  margin: 0 auto;
+  margin-bottom: 18px;
   display: block;
   filter: drop-shadow(0 0 18px rgba(201,154,74,.24));
 }
 
 .hero-logo-block h1 {
   font-family: "Playfair Display", serif;
-  font-size: clamp(3rem, 5.8vw, 5.9rem);
-  line-height: .96;
+  font-size: clamp(2.8rem, 4.8vw, 4.8rem);
+  line-height: .95;
   letter-spacing: .075em;
   font-weight: 500;
   color: #f6eee3;
@@ -957,15 +960,17 @@ main.hero .navbar {
 .hero-author-v2 {
   position: absolute;
   z-index: 4;
-  right: -58px;
-  bottom: -18px;
-  width: min(56vw, 780px);
+  right: 4vw;
+  bottom: 35px;
+  width: min(48vw, 620px);
   margin: 0;
 }
 
 .hero-author-v2 img {
   width: 100%;
   height: auto;
+  object-fit: contain;
+  max-height: 78vh;
   filter: contrast(1.08) saturate(.9) brightness(.82);
   mask-image: linear-gradient(to bottom, #000 0%, #000 82%, rgba(0,0,0,.18) 100%);
   -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 82%, rgba(0,0,0,.18) 100%);
@@ -991,12 +996,12 @@ main.hero .navbar {
 
 .quote-card-v2 {
   z-index: 10;
-  right: 3vw;
+  right: 4vw;
   top: auto;
-  bottom: 92px;
-  width: 270px;
+  bottom: 65px;
+  width: 240px;
   height: auto;
-  min-height: 190px;
+  min-height: 160px;
   border: 1px solid rgba(255,255,255,.06);
   border-radius: 10px;
   background: rgba(16,16,15,.72);
@@ -1004,14 +1009,14 @@ main.hero .navbar {
 }
 
 .quote-card-v2 p {
-  font-size: 1.35rem;
+  font-size: 1.15rem;
   line-height: 1.35;
 }
 
 .bottom-panel-v2 {
   z-index: 20;
   width: 62%;
-  height: 118px;
+  height: 95px;
   padding-left: 135px;
 }
 
