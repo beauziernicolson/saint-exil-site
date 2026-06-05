@@ -714,7 +714,7 @@ main.hero .navbar {
   }
 
   .works-intro h1 {
-    font-size: clamp(2rem, 8vw, 2.8rem);
+    font-size: clamp(0.1rem, 8vw, 2.8rem);
     line-height: 0.95;
     letter-spacing: -0.02em;
   }
@@ -1452,8 +1452,23 @@ main.hero .navbar {
   }
 
   .mobile-icon {
-    font-size: 22px;
-    line-height: 1;
+    width: 24px;
+    height: 24px;
+    display: grid;
+    place-items: center;
+    color: currentColor;
+  }
+
+  .mobile-icon svg {
+    width: 23px;
+    height: 23px;
+    display: block;
+    fill: none;
+    stroke: currentColor;
+  }
+
+  .mobile-bottom-nav a.active .mobile-icon svg {
+    stroke: #d7a83d;
   }
 
   .mobile-bottom-nav small {
