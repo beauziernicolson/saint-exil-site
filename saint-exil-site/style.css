@@ -160,10 +160,6 @@ section.hero::after{
   transform: translateX(-50%);
 }
 
-/* Menu bouton (mobile) - keep script.js behavior */
-.menu-btn{display:none;background:transparent;border:0;padding:.35rem;cursor:pointer}
-.menu-btn span{display:block;width:28px;height:2px;background:var(--ivory);border-radius:2px}
-
 /* Hero content container */
 .hero-content{
   position:relative;
@@ -323,9 +319,7 @@ img{max-width:100%;display:block}
   .brand-text span{font-size:7px;letter-spacing:0.32em}
   .brand-text span::before,
   .brand-text span::after{width:20px}
-  .menu-btn{display:block;position:relative;z-index:20}
-  .nav-links{display:none;position:absolute;top:82px;right:0;background:rgba(8,8,8,.94);padding:25px;flex-direction:column;gap:20px;border:1px solid rgba(210,160,95,.25)}
-  .nav-links.open{display:flex}
+  .nav-links{display:flex;position:static;background:transparent;padding:0;flex-direction:row;gap:26px;border:none;flex-wrap:wrap;justify-content:center}
   .portrait-wrap{top:72px;left:50%;right:auto;transform:translateX(-50%);width:430px;height:430px;overflow:hidden}
   .portrait{width:500px;left:-34px;top:-15px}
   .portrait-wrap::after{inset:0;background:linear-gradient(180deg,transparent 72%,#050505 100%)}

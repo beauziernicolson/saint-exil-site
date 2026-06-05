@@ -1,10 +1,3 @@
-const btn = document.querySelector('.menu-btn');
-const nav = document.querySelector('.nav-links');
-
-btn?.addEventListener('click', () => {
-  nav.classList.toggle('open');
-});
-
 const books = [
   {
     title: "Comme un cimetière debout en moi",
