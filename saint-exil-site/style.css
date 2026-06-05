@@ -69,7 +69,7 @@ section.hero::after{
 }
 
 /* Navbar */
-.navbar {
+ .navbar {
   position: relative;
   z-index: 50;
   width: min(1180px, 86vw);
@@ -378,7 +378,7 @@ main.hero .navbar {
   z-index: 3;
   width: 100%;
   max-width: 1000px;
-  margin: 0 auto 80px;
+  margin: 0 auto 2px;
   min-height: 520px;
   display: flex;
   flex-direction: column;
@@ -433,7 +433,7 @@ main.hero .navbar {
 .books-section{
   width:min(1160px,86vw);
   margin:0 auto;
-  padding:140px 0 120px;
+  padding:5px 0 120px;
 }
 .books-grid{
   display:grid;
@@ -509,14 +509,157 @@ main.hero .navbar {
 .bio-content blockquote{font-size:clamp(1.5rem,3vw,2.4rem);line-height:1.35;color:#fff;border-left:3px solid #c99a4a;padding-left:28px;margin:0 0 45px;font-style:italic}
 .bio-content p{font-size:clamp(1.12rem,1.5vw,1.28rem);line-height:1.85;color:#e5ddd1;margin-bottom:28px}
 
-@media (max-width:768px){
-  .bio-page{padding:95px 20px 60px}
-  .bio-intro{text-align:left;margin-bottom:35px}
-  .bio-layout{display:flex;flex-direction:column;gap:35px}
-  .bio-author-card{width:100%;padding:18px}
-  .bio-author-card img{max-width:320px;margin:0 auto 20px}
-  .bio-content p{font-size:18px;line-height:1.8}
+@media (max-width: 768px) {
+  .bio-page {
+    padding: 42px 20px 95px;
+    background:
+      radial-gradient(circle at 15% 4%, rgba(201,154,74,0.12), transparent 30%),
+      #050505;
+  }
+
+  .bio-intro {
+    text-align: left;
+    margin: 0 auto 34px;
+  }
+
+  .bio-intro .section-label {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    color: #c99a4a;
+    margin-bottom: 14px;
+  }
+
+  .bio-intro h1 {
+    font-size: clamp(2.35rem, 12vw, 4rem);
+    line-height: 0.98;
+    margin: 0 0 18px;
+    color: #f6eee3;
+  }
+
+  .bio-intro p {
+    font-size: 18px;
+    line-height: 1.55;
+    color: #d8cfc2;
+  }
+
+  .bio-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 100%;
+  }
+
+  .bio-author-card {
+    width: 100%;
+    padding: 18px;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(201,154,74,0.32);
+    box-shadow: 0 24px 70px rgba(0,0,0,0.48);
+  }
+
+  .bio-author-card img {
+    width: 100%;
+    max-width: 330px;
+    margin: 0 auto 22px;
+    border-radius: 18px;
+    object-fit: cover;
+  }
+
+  .bio-author-card h2 {
+    font-size: 2rem;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .bio-role {
+    font-size: 16px;
+    color: #c99a4a;
+    margin-bottom: 24px;
+  }
+
+  .bio-info {
+    display: grid;
+    gap: 0;
+  }
+
+  .bio-info div {
+    padding: 15px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .bio-info span {
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #c99a4a;
+    margin-bottom: 5px;
+  }
+
+  .bio-info strong {
+    font-size: 17px;
+    line-height: 1.45;
+    color: #f5efe6;
+  }
+
+  .bio-content {
+    max-width: 100%;
+  }
+
+  .bio-content blockquote {
+    font-size: clamp(1.6rem, 7vw, 2.3rem);
+    line-height: 1.35;
+    padding-left: 22px;
+    margin: 4px 0 34px;
+    border-left: 3px solid #c99a4a;
+    color: #fff;
+  }
+
+  .bio-content p {
+    font-size: 18px;
+    line-height: 1.85;
+    color: #e5ddd1;
+    margin-bottom: 26px;
+  }
 }
+
+/* BIOGRAPHY SMALL MOBILE */
+@media (max-width: 520px) {
+  .bio-page {
+    padding: 36px 18px 92px;
+  }
+
+  .bio-intro h1 {
+    font-size: clamp(2.1rem, 11vw, 3.4rem);
+  }
+
+  .bio-intro p {
+    font-size: 16px;
+  }
+
+  .bio-author-card {
+    padding: 16px;
+    border-radius: 22px;
+  }
+
+  .bio-author-card h2 {
+    font-size: 1.75rem;
+  }
+
+  .bio-role {
+    font-size: 15px;
+  }
+
+  .bio-info strong {
+    font-size: 16px;
+  }
+
+  .bio-content p {
+    font-size: 17px;
+    line-height: 1.8;
+  }
+}
+
 @media (min-width:860px){
   .books-grid{
     grid-template-columns:repeat(3,minmax(0,1fr));
@@ -544,11 +687,19 @@ main.hero .navbar {
   }
 
   .works-intro h1 {
-    font-size: clamp(2.7rem, 12vw, 4.2rem);
+    font-size: clamp(2.4rem, 9vw, 3.8rem);
+    line-height: 0.95;
+    max-width: 95%;
+    margin: 0 auto 18px;
+    text-align: center;
+  }
+
+  .works-intro h1.title-book {
+    font-size: 1.8rem;
   }
   
   .books-section {
-    padding: 120px 0 100px;
+    padding: 70px 0 100px;
   }
   
   .books-grid {
@@ -560,6 +711,12 @@ main.hero .navbar {
 @media (max-width: 520px) {
   .works-intro h2 {
     font-size: 11px;
+  }
+
+  .works-intro h1 {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
   }
 
   .book-card {
@@ -1254,3 +1411,189 @@ main.hero .navbar {
     min-height: 220px;
   }
 }
+
+/* Mobile Bottom Navigation */
+.mobile-bottom-nav {
+  display: none;
+}
+
+@media (max-width: 820px) {
+  body {
+    padding-bottom: 78px;
+  }
+
+  .mobile-bottom-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 72px;
+    background: rgba(5,5,5,.96);
+    border-top: 1px solid rgba(215,168,61,.18);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    z-index: 9999;
+    backdrop-filter: blur(12px);
+  }
+
+  .mobile-bottom-nav a {
+    color: rgba(245,239,230,.65);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 12px;
+  }
+
+  .mobile-bottom-nav a.active {
+    color: #d7a83d;
+  }
+
+  .mobile-icon {
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  .mobile-bottom-nav small {
+    font-size: 12px;
+  }
+}
+
+/* =======================================
+RESPONSIVE MIGRATION ZONE
+======================================= */
+
+/* RESPONSIVE CANDIDATE */
+.hero h1 {
+  font-size: 50px;
+  line-height: 1.02;
+  font-weight: 400;
+  position: relative;
+  top: -70px;
+  letter-spacing: clamp(4px, .8vw, 10px);
+  text-transform: uppercase;
+  color: #f3efe7;
+  text-shadow: 0 8px 18px rgba(0,0,0,.8);
+}
+
+/* RESPONSIVE CANDIDATE */
+.subtitle {
+  margin: 18px auto 26px;
+  color: #d7a83d;
+  font-size: 24px;
+  position: relative;
+  top: -40px;
+  letter-spacing: 13px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+
+/* RESPONSIVE CANDIDATE */
+.divider {
+  width: 430px;
+  max-width: 80%;
+  height: 1px;
+  position: relative;
+  top: -30px;
+  background: linear-gradient(90deg, transparent, rgba(215,168,61,.7), transparent);
+  margin: 0 auto 26px;
+  position: relative;
+}
+
+/* RESPONSIVE CANDIDATE */
+.intro {
+  width: 420px;
+  max-width: 90%;
+  margin: 0 auto 28px;
+  position: relative;
+  top: -40px;
+  font-size: 14.5px;
+  line-height: 1.45;
+  color: #f1e9dc;
+}
+
+/* RESPONSIVE CANDIDATE */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  padding: 18px 30px;
+  border: 1px solid #d7a83d;
+  color: #d7a83d;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-size: 14px;
+  position: relative;
+  top:-50px;
+  font-family: Arial, sans-serif;
+  font-weight: 600;
+  border-radius: 4px;
+  background: rgba(0,0,0,.28);
+  transition: .3s ease;
+}
+
+/* RESPONSIVE CANDIDATE */
+.portrait {
+  position: relative;
+  right: 200px;
+  bottom: 180px;
+  height: auto;
+  width: min(46vw, 620px);
+  max-height: 78vh;
+  max-width: 100%;
+  object-fit: contain;
+  align-self: end;
+  justify-self: end;
+  z-index: 4;
+  filter: drop-shadow(-40px 0 45px rgba(0,0,0,.9));
+}
+
+/* RESPONSIVE CANDIDATE */
+.name-bg {
+  position: absolute;
+  right: 40px;
+  top: -24px;
+  font-size: 60px;
+  line-height: 1.2;
+  color: rgba(255,255,255,.035);
+  font-style: italic;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* RESPONSIVE CANDIDATE */
+.quote-card {
+  position: absolute;
+  right: clamp(24px, 5vw, 70px);
+  bottom: clamp(48px, 8vh, 90px);
+  width: clamp(240px, 22vw, 300px);
+  padding: clamp(32px, 3vw, 40px);
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: 8px;
+  background: rgba(9,9,9,.62);
+  backdrop-filter: blur(12px);
+  z-index: 8;
+}
+
+/* RESPONSIVE CANDIDATE */
+.bottom-card {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 70%;
+  height: 80px;
+  background: #f3eee6;
+  color: #4b443b;
+  display: flex;
+  align-items: center;
+  padding-left: 92px;
+  z-index: 10;
+  clip-path: polygon(0 0, 91% 0, 100% 100%, 0% 100%);
+}
+
