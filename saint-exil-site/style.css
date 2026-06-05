@@ -1468,6 +1468,14 @@ main.hero .navbar {
   .mobile-bottom-nav small {
     font-size: 12px;
   }
+
+  .nav-links,
+  .menu-btn,
+  .menu-toggle,
+  .hamburger,
+  .mobile-menu {
+    display: none !important;
+  }
 }
 
 /* =======================================
