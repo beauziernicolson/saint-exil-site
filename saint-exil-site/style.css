@@ -1425,7 +1425,7 @@ main.hero .navbar {
     background: rgba(5,5,5,.96);
     border-top: 1px solid rgba(215,168,61,.18);
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     z-index: 9999;
     backdrop-filter: blur(12px);
   }
@@ -1612,5 +1612,139 @@ RESPONSIVE MIGRATION ZONE
   padding-left: 92px;
   z-index: 10;
   clip-path: polygon(0 0, 91% 0, 100% 100%, 0% 100%);
+}
+
+.admin-news-layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 360px) 1fr;
+  gap: 30px;
+  padding: 40px clamp(30px, 6vw, 90px);
+}
+
+.admin-news-panel,
+.admin-news-list {
+  background: rgba(9,9,9,.96);
+  border: 1px solid rgba(215,168,61,.16);
+  border-radius: 20px;
+  padding: 28px;
+}
+
+.admin-news-form label {
+  display: block;
+  margin-top: 24px;
+  margin-bottom: 10px;
+  color: #f3efe7;
+  font-size: 0.95rem;
+  letter-spacing: .02em;
+}
+
+.admin-news-form input,
+.admin-news-form textarea {
+  width: 100%;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 10px;
+  color: #f7f1e8;
+  padding: 14px 16px;
+  font-size: 0.95rem;
+}
+
+.admin-news-form textarea {
+  min-height: 132px;
+  resize: vertical;
+}
+
+.admin-news-buttons {
+  display: flex;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.admin-news-buttons button {
+  flex: 1;
+  min-height: 46px;
+  border: 1px solid #d7a83d;
+  background: transparent;
+  color: #f7f1e8;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .25s ease, color .25s ease;
+}
+
+.admin-news-buttons button:hover {
+  background: #d7a83d;
+  color: #050403;
+}
+
+.admin-news-card {
+  margin-bottom: 18px;
+}
+
+.admin-news-card-inner {
+  border: 1px solid rgba(215,168,61,.14);
+  border-radius: 16px;
+  padding: 22px;
+  background: rgba(255,255,255,.03);
+}
+
+.admin-news-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.admin-news-meta strong {
+  display: block;
+  color: #f3efe7;
+  font-size: 1rem;
+}
+
+.admin-news-meta span {
+  color: #c99a4a;
+  font-size: .9rem;
+  white-space: nowrap;
+}
+
+.admin-news-text {
+  color: #ddd3c5;
+  line-height: 1.65;
+  margin-bottom: 18px;
+}
+
+.admin-news-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.admin-news-actions button {
+  flex: 1;
+  border: 1px solid rgba(215,168,61,.24);
+  background: transparent;
+  color: #f3efe7;
+  padding: 12px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background .25s ease, color .25s ease;
+}
+
+.admin-news-actions button:hover {
+  background: rgba(215,168,61,.16);
+}
+
+.news-empty {
+  color: #d8cfc2;
+  padding: 22px;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .admin-news-layout {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
 }
 

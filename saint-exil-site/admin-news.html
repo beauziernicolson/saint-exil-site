@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Actualités — Étienne De Saint-Exil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="brand">
+      <img src="ecusson.png" alt="Logo Étienne De Saint-Exil">
+      <div class="brand-text">
+        <h2>Étienne De Saint-Exil</h2>
+        <span>Admin</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="news-page">
+    <section class="news-hero">
+      <span class="section-label">ADMIN</span>
+      <h1>Gestion des actualités</h1>
+      <p>Publier, modifier ou supprimer des actualités sans toucher au code.</p>
+    </section>
+
+    <section class="news-layout admin-news-layout">
+      <div class="admin-news-panel">
+        <form id="newsForm" class="admin-news-form">
+          <input type="hidden" id="newsId" name="id" />
+
+          <label for="newsImageFile">Image de couverture</label>
+          <input id="newsImageFile" name="imageFile" type="file" accept="image/*" />
+          <input id="newsImage" name="image" type="text" placeholder="images/actualite-1.jpg" />
+          <div class="news-image-preview-wrapper">
+            <img id="newsImagePreview" alt="Aperçu de l’image sélectionnée" hidden />
+          </div>
+
+          <label for="newsTitle">Titre</label>
+          <input id="newsTitle" name="title" type="text" placeholder="Titre de l’actualité" required />
+
+          <label for="newsExcerpt">Résumé</label>
+          <textarea id="newsExcerpt" name="excerpt" rows="4" placeholder="Résumé de l’article" required></textarea>
+
+          <label for="newsUrl">Lien externe</label>
+          <input id="newsUrl" name="articleUrl" type="url" placeholder="https://..." />
+
+          <div class="admin-news-buttons">
+            <button id="newsSubmitBtn" type="submit">Publier</button>
+            <button id="newsCancelBtn" type="button">Annuler</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="admin-news-list" id="adminNewsList"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
