@@ -37,9 +37,31 @@ const books = [
   {
     title: "Un chant deux coeurs",
     cover: "un chant.jpeg",
-    summary: `Résumé à ajouter prochainement.`,
-    buyText: "Lien d’achat à venir",
-    buyLink: "#"
+    summary: `
+      <strong>Titre :</strong> Extrait du recueil<br>
+      <strong>Sous-titre :</strong> Ode à Ylesha<br><br>
+      <strong>Contenu :</strong><br><br>
+      « Regarde là-bas, la verdure est bien sereine.<br>
+      Viens dans mes bras, maîtresse, que je t'y emmène<br>
+      Voir l'enchanté Ouanga-négresse s'en allant<br>
+      En élégance fine, d'une fleur à l'autre.<br><br>
+      Ambitieux d'âme de s'en faire fidèle apôtre.<br>
+      Fais de moi celui de ce conjugal instant.<br><br>
+      Viens te blottir contre mon cœur, ô petit ange<br>
+      Aux yeux d'une vierge splendeur qui se mélange<br>
+      A la clarté de l'aube étant si fraîche et pure.<br><br>
+      Rossignol fera son concert de plus bel,<br>
+      Quand, là-bas, assis à l'ombre, l'âme fidèle,<br>
+      On se contera les Tézin, les Jean Le sot.<br><br>
+      Puis je me plongerai dans tes yeux, te serine<br>
+      A quel point, combien tu es ma fleur divine. »<br><br>
+      <strong>Étienne De Saint-Exil</strong><br>
+      Août 2004
+    `,
+    buyText: "Lien de publication à venir",
+    buyLink: "#",
+    badge: "Extrait du recueil Un Chant Deux Cœurs",
+    disabledBuy: true
   }
 ];
 
@@ -47,6 +69,7 @@ const booksGrid = document.querySelector('#booksGrid');
 const bookModal = document.querySelector('#bookModal');
 const bookModalTitle = document.querySelector('#bookModalTitle');
 const bookModalSummary = document.querySelector('#bookModalSummary');
+const bookModalBadge = document.querySelector('#bookModalBadge');
 const bookModalCover = document.querySelector('.book-modal-cover');
 const bookModalBuy = document.querySelector('#bookModalBuy');
 const bookModalClose = document.querySelector('.book-modal-close');
@@ -61,10 +84,31 @@ const openBookModal = (index) => {
     bookModalCover.alt = `${book.title} couverture`;
   }
   if (bookModalTitle) bookModalTitle.textContent = book.title;
-  if (bookModalSummary) bookModalSummary.textContent = book.summary;
+  if (bookModalSummary) {
+    bookModalSummary.innerHTML = book.summary || '';
+  }
+  if (bookModalBadge) {
+    const badgeText = book.badge || '';
+    bookModalBadge.textContent = badgeText;
+    bookModalBadge.style.display = badgeText ? 'inline-flex' : 'none';
+  }
   if (bookModalBuy) {
-    bookModalBuy.textContent = book.buyText;
-    bookModalBuy.href = book.buyLink;
+    const isDisabled = Boolean(book.disabledBuy);
+    bookModalBuy.textContent = book.buyText || 'Acheter le livre';
+    bookModalBuy.href = isDisabled ? '#' : (book.buyLink || '#');
+    bookModalBuy.classList.toggle('book-buy-btn--disabled', isDisabled);
+    bookModalBuy.setAttribute('aria-disabled', String(isDisabled));
+    bookModalBuy.setAttribute('tabindex', isDisabled ? '-1' : '0');
+    bookModalBuy.onclick = isDisabled
+      ? (event) => event.preventDefault()
+      : null;
+    bookModalBuy.removeAttribute('target');
+    if (!isDisabled) {
+      bookModalBuy.setAttribute('target', '_blank');
+      bookModalBuy.setAttribute('rel', 'noopener');
+    } else {
+      bookModalBuy.removeAttribute('rel');
+    }
   }
 
   bookModal.classList.add('active');
