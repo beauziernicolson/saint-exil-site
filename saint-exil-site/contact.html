@@ -49,7 +49,7 @@
 
         <div class="social-grid">
 
-          <a class="social-link" href="https://www.instagram.com/etienne_de_saint_exil" aria-label="Instagram">
+          <a class="social-link" href="https://www.instagram.com/etienne_de_saint_exil" data-contact-key="instagram" aria-label="Instagram">
             <span class="social-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="3" y="3" width="18" height="18" rx="5.2" ry="5.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
@@ -65,7 +65,7 @@
 
           <!-- WhatsApp removed to keep design coherent -->
 
-          <a class="social-link" href="mailto:contact@etiennedesaintexil.com" aria-label="Email">
+          <a class="social-link" href="mailto:contact@etiennedesaintexil.com" data-contact-key="email" aria-label="Email">
             <span class="social-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor">
                 <rect x="3" y="5" width="18" height="14" rx="2" ry="2" stroke-width="1.2"></rect>
@@ -78,7 +78,7 @@
             </span>
           </a>
 
-          <a class="social-link" href="https://www.facebook.com/share/18Zdq7zx3n/" aria-label="Facebook">
+          <a class="social-link" href="https://www.facebook.com/share/18Zdq7zx3n/" data-contact-key="facebook" aria-label="Facebook">
             <span class="social-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M14.2 8.1h2.1V4.6c-.36-.05-1.6-.16-3.05-.16-3.02 0-5.08 1.84-5.08 5.22v2.94H4.75v3.92h3.42V24h4.2v-7.48h3.28l.52-3.92h-3.8v-2.55c0-1.13.31-1.95 1.83-1.95Z" fill="currentColor"/>
@@ -90,7 +90,7 @@
             </span>
           </a>
 
-          <a class="social-link" href="#" aria-label="X">
+          <a class="social-link" href="#" data-contact-key="twitter" aria-label="X">
             <span class="social-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M14.35 10.15 22.7 0h-1.98l-7.25 8.8L7.68 0H1l8.76 13.28L1 24h1.98l7.65-9.28L16.74 24h6.68l-9.07-13.85Zm-2.7 3.28-.9-1.34L3.7 1.56h3.03l5.7 8.5.9 1.34 7.4 11.06H17.7l-6.05-9.03Z" fill="currentColor"/>
@@ -102,7 +102,7 @@
             </span>
           </a>
 
-          <a class="social-link" href="https://www.tiktok.com/@etienne.de.sainte" aria-label="TikTok">
+          <a class="social-link" href="https://www.tiktok.com/@etienne.de.sainte" data-contact-key="tiktok" aria-label="TikTok">
             <span class="social-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M16.6 2.1c.28 2.18 1.5 3.58 3.62 3.72v3.36c-1.23.12-2.3-.28-3.52-1.02v6.28c0 7.98-8.7 10.48-12.18 4.76-2.24-3.68-.86-10.14 6.3-10.4v3.54c-.4.06-.84.16-1.23.3-1.18.4-1.86 1.16-1.67 2.5.36 2.55 5.04 3.3 4.65-1.68V2.1h4.03Z" fill="currentColor"/>
@@ -113,7 +113,29 @@
               <small>Voir les contenus vidéo</small>
             </span>
           </a>
+          <a class="social-link" href="#" data-contact-key="whatsapp" aria-label="WhatsApp">
+            <span class="social-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12.04 2.04A9.94 9.94 0 0 0 2.1 12.01c0 1.75.46 3.45 1.34 4.94L2 22l5.18-1.35a9.96 9.96 0 0 0 4.86 1.25h.01a9.94 9.94 0 1 0 0-19.87Zm5.6 14.4c-.24.67-.96 1.2-1.63 1.36-.43.08-.96.13-2.79-.59-2.37-.97-3.9-3.37-4.02-3.53-.12-.16-1-.1-1.4-.1s-.8.16-1.1.32c-.32.17-.64.55-.8.9-.18.38-.36.78.12 1.53.52.8 1.18 1.43 1.47 1.74.29.31 1.02.95 1.83 1.3.3.13.57.22.77.3.44.13.87.11 1.19-.01.33-.12.79-.3 1.2-.56.41-.25 1.08-.8 1.19-1.4.11-.6.11-1.12-.1-1.39Z" fill="currentColor"/>
+              </svg>
+            </span>
+            <span class="social-text">
+              <strong>WhatsApp</strong>
+              <small>Contacter directement</small>
+            </span>
+          </a>
 
+          <a class="social-link" href="#" data-contact-key="phone" aria-label="Téléphone">
+            <span class="social-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5.34 2.44c.42-.42 1.02-.53 1.49-.21l2.3 1.28a1.2 1.2 0 0 1 .46 1.64l-.95 1.84a.24.24 0 0 0 .02.23c.18.35.47.75.85 1.13.37.38.77.68 1.12.87a.24.24 0 0 0 .24-.02l1.83-.95a1.2 1.2 0 0 1 1.64.46l1.29 2.29c.33.58.21 1.35-.29 1.76l-.86.82c-.42.4-1 .56-1.58.43-1.48-.33-3.35-.98-5.04-2.67-1.68-1.69-2.33-3.56-2.66-5.04-.12-.58.03-1.16.44-1.58l.82-.86Z" fill="currentColor"/>
+              </svg>
+            </span>
+            <span class="social-text">
+              <strong>Téléphone</strong>
+              <small>Appeler l’auteur</small>
+            </span>
+          </a>
         </div>
       </div>
 

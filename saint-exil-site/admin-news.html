@@ -57,6 +57,101 @@
 
       <div class="admin-news-list" id="adminNewsList"></div>
     </section>
+
+    <section class="news-layout admin-news-layout">
+      <div class="admin-news-panel">
+        <h2 style="margin-bottom: 8px; color: #f3efe7;">Gestion des œuvres</h2>
+        <p style="color: #ddd3c5; line-height: 1.6; margin-bottom: 8px;">Ajoutez, modifiez ou supprimez les livres. L’image de couverture est convertie en Base64 et enregistrée dans localStorage.</p>
+
+        <form id="bookForm" class="admin-news-form">
+          <input type="hidden" id="bookId" name="id" />
+
+          <label for="bookTitle">Titre</label>
+          <input id="bookTitle" name="title" type="text" placeholder="Titre de l’œuvre" required />
+
+          <label for="bookCoverFile">Couverture image</label>
+          <input id="bookCoverFile" name="coverFile" type="file" accept="image/*" />
+          <input id="bookCover" name="cover" type="text" placeholder="https://... ou image base64" />
+          <div class="news-image-preview-wrapper">
+            <img id="bookCoverPreview" alt="Aperçu de la couverture" hidden />
+          </div>
+
+          <label for="bookSummary">Résumé</label>
+          <textarea id="bookSummary" name="summary" rows="4" placeholder="Résumé public de l’œuvre"></textarea>
+
+          <label for="bookExcerpt">Extrait</label>
+          <textarea id="bookExcerpt" name="excerpt" rows="4" placeholder="Extrait ou texte complémentaire"></textarea>
+
+          <label for="bookBuyText">Texte du bouton</label>
+          <input id="bookBuyText" name="buyText" type="text" placeholder="Acheter le livre" />
+
+          <label for="bookBuyLink">Lien d’achat</label>
+          <input id="bookBuyLink" name="buyLink" type="url" placeholder="https://..." />
+
+          <label for="bookBadge">Badge</label>
+          <input id="bookBadge" name="badge" type="text" placeholder="Nouveau, Extrait, Prix..." />
+
+          <label for="bookDisabledBuy">Bouton désactivé</label>
+          <select id="bookDisabledBuy" name="disabledBuy">
+            <option value="false">Non</option>
+            <option value="true">Oui</option>
+          </select>
+
+          <div class="admin-news-buttons">
+            <button id="bookSubmitBtn" type="submit">Ajouter</button>
+            <button id="bookCancelBtn" type="button">Annuler</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="admin-news-list" id="adminBooksList"></div>
+    </section>
+
+    <section class="news-layout admin-news-layout">
+      <div class="admin-news-panel">
+        <h2 style="margin-bottom: 8px; color: #f3efe7;">Gestion des contacts</h2>
+        <p style="color: #ddd3c5; line-height: 1.6; margin-bottom: 8px;">Modifiez les liens visibles sur la page Contact. Si un champ est vide, le lien reste sur # sans casser la carte.</p>
+
+        <form id="contactForm" class="admin-news-form">
+          <label for="contactInstagram">Instagram</label>
+          <input id="contactInstagram" name="instagram" type="text" placeholder="https://..." />
+
+          <label for="contactEmail">Email</label>
+          <input id="contactEmail" name="email" type="email" placeholder="contact@..." />
+
+          <label for="contactFacebook">Facebook</label>
+          <input id="contactFacebook" name="facebook" type="text" placeholder="https://..." />
+
+          <label for="contactTwitter">X / Twitter</label>
+          <input id="contactTwitter" name="twitter" type="text" placeholder="https://x.com/..." />
+
+          <label for="contactTikTok">TikTok</label>
+          <input id="contactTikTok" name="tiktok" type="text" placeholder="https://www.tiktok.com/..." />
+
+          <label for="contactWhatsApp">WhatsApp</label>
+          <input id="contactWhatsApp" name="whatsapp" type="text" placeholder="+33..." />
+
+          <label for="contactPhone">Téléphone</label>
+          <input id="contactPhone" name="phone" type="text" placeholder="+33..." />
+
+          <div class="admin-news-buttons">
+            <button id="contactSubmitBtn" type="submit">Enregistrer</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="admin-news-list">
+        <article class="admin-news-card">
+          <div class="admin-news-card-inner">
+            <div class="admin-news-meta">
+              <strong>Prévisualisation des liens</strong>
+              <span>Contact</span>
+            </div>
+            <div class="admin-news-text">Les champs enregistrés sont appliqués sur la page Contact. Les liens vides restent inactifs avec un href="#" et l’icône reste visible.</div>
+          </div>
+        </article>
+      </div>
+    </section>
   </main>
 
   <script src="script.js"></script>
