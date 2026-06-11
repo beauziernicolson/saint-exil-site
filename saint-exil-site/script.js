@@ -55,12 +55,30 @@ const defaultBooks = [
     id: 'book-5',
     title: 'Fumées sur les îles',
     cover: 'fumees.jpeg',
-    summary: 'Résumé à ajouter prochainement.',
-    excerpt: 'Résumé à ajouter prochainement.',
-    buyText: 'Lien d’achat à venir',
+    summary: `<h3>L'Écriture Inconnue</h3>
+
+<p><em>Extrait du recueil Fumées sur les îles</em></p>
+
+Sous une couverture<br>
+De servitude,<br>
+Des mots cimetières.<br>
+Paragraphes incohérents<br>
+En lettres de sable<br>
+Traitant ce sujet<br>
+Hostile à l'écriture<br>
+De l'Au-delà :<br>
+C'est l'ouvrage<br>
+Des gueux<br>
+Où tout est gravé<br>
+A l'envers.<br><br>
+
+<strong>Étienne De Saint-Exil</strong><br>
+2009`,
+    excerpt: 'Extrait du recueil Fumées sur les îles.',
+    buyText: 'Lien de publication à venir',
     buyLink: '#',
-    badge: '',
-    disabledBuy: false,
+    badge: 'Extrait du recueil Fumées sur les îles',
+    disabledBuy: true,
     createdAt: '2026-05-05T10:00:00.000Z'
   },
   {
@@ -158,7 +176,7 @@ const syncBooksFromDefaultData = () => {
   const nextBooks = stored.map((item, index) => {
     const title = typeof item?.title === 'string' ? item.title.trim() : '';
 
-    if (title === 'Un chant deux coeurs' || title === 'Je m\'accuse') {
+    if (title === 'Un chant deux coeurs' || title === 'Je m\'accuse' || title === 'Fumées sur les îles') {
       const source = defaultsByTitle[title];
 
       if (!source) {
