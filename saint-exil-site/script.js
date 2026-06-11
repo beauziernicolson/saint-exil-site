@@ -18,12 +18,13 @@ const defaultBooks = [
     id: 'book-2',
     title: 'Je m\'accuse',
     cover: 'oeuvres2.jpg',
-    summary: 'Résumé à ajouter prochainement.',
-    excerpt: 'Résumé à ajouter prochainement.',
-    buyText: 'Lien d’achat à venir',
+    summary: '<!-- COLLER ICI L\'EXTRAIT COMPLET FOURNI PAR LE CLIENT -->',
+    excerpt: 'Extrait du livre paru en 2012',
+    buyText: 'Lire l\'extrait (PDF)',
     buyLink: '#',
-    badge: '',
-    disabledBuy: false,
+    pdfLink: 'Extrait - Je m\'accuse.pdf',
+    badge: 'Extrait du livre paru en 2012',
+    disabledBuy: true,
     createdAt: '2026-05-02T10:00:00.000Z'
   },
   {
@@ -66,7 +67,33 @@ const defaultBooks = [
     id: 'book-6',
     title: 'Un chant deux coeurs',
     cover: 'un chant.jpeg',
-    summary: '<strong>Titre :</strong> Extrait du recueil<br><strong>Sous-titre :</strong> Ode à Ylesha<br><br><strong>Contenu :</strong><br><br>« Regarde là-bas, la verdure est bien sereine.<br>Viens dans mes bras, maîtresse, que je t\'y emmène<br>Voir l\'enchanté Ouanga-négresse s\'en allant<br>En élégance fine, d\'une fleur à l\'autre.<br><br>Ambitieux d\'âme de s\'en faire fidèle apôtre.<br>Fais de moi celui de ce conjugal instant.<br><br>Viens te blottir contre mon cœur, ô petit ange<br>Aux yeux d\'une vierge splendeur qui se mélange<br>A la clarté de l\'aube étant si fraîche et pure.<br><br>Rossignol fera son concert de plus bel,<br>Quand, là-bas, assis à l\'ombre, l\'âme fidèle,<br>On se contera les Tézin, les Jean Le sot.<br><br>Puis je me plongerai dans tes yeux, te serine<br>A quel point, combien tu es ma fleur divine. »<br><br><strong>Étienne De Saint-Exil</strong><br>Août 2004',
+    summary: `<span class="section-label">Titre :</span>
+
+<h3>Ode à Ylesha</h3>
+
+<p><em>Extrait du recueil Un Chant Deux Cœurs</em></p>
+
+« Regarde là-bas, la verdure est bien sereine.<br>
+Viens dans mes bras, maîtresse, que je t'y emmène<br>
+Voir l'enchanté Ouanga-négresse s'en allant<br>
+En élégance fine, d'une fleur à l'autre.<br><br>
+
+Ambitieux d'âme de s'en faire fidèle apôtre.<br>
+Fais de moi celui de ce conjugal instant.<br><br>
+
+Viens te blottir contre mon cœur, ô petit ange<br>
+Aux yeux d'une vierge splendeur qui se mélange<br>
+A la clarté de l'aube étant si fraîche et pure. Ô<br><br>
+
+Rossignol fera son concert de plus bel,<br>
+Quand, là-bas, assis à l'ombre, l'âme fidèle,<br>
+On se contera les Tézin, les Jean Le sot.<br><br>
+
+Puis je me plongerai dans tes yeux, te serine<br>
+A quel point, combien tu es ma fleur divine. »<br><br>
+
+<strong>Étienne De Saint-Exil</strong><br>
+Août 2004`,
     excerpt: 'Extrait du recueil Un Chant Deux Cœurs.',
     buyText: 'Lien de publication à venir',
     buyLink: '#',
@@ -110,22 +137,57 @@ const normalizeBook = (item, fallbackId) => ({
   excerpt: item?.excerpt || item?.summary || '',
   buyText: item?.buyText || 'Acheter le livre',
   buyLink: item?.buyLink || '#',
+  pdfLink: item?.pdfLink || '',
   badge: item?.badge || '',
   disabledBuy: Boolean(item?.disabledBuy),
   createdAt: item?.createdAt || new Date().toISOString()
 });
 
-const getBooks = () => {
+const syncBooksFromDefaultData = () => {
   const stored = parseStoredJson(window.localStorage.getItem(BOOKS_STORAGE_KEY));
-  const books = Array.isArray(stored) ? stored.map((item, index) => normalizeBook(item, `book-${index + 1}`)) : [];
 
-  if (books.length) {
-    return books;
+  if (!Array.isArray(stored)) {
+    window.localStorage.setItem(BOOKS_STORAGE_KEY, JSON.stringify(defaultBooks));
+    return [...defaultBooks];
   }
 
-  window.localStorage.setItem(BOOKS_STORAGE_KEY, JSON.stringify(defaultBooks));
-  return [...defaultBooks];
+  const defaultsByTitle = Object.fromEntries(
+    defaultBooks.map((book) => [book.title, book])
+  );
+
+  const nextBooks = stored.map((item, index) => {
+    const title = typeof item?.title === 'string' ? item.title.trim() : '';
+
+    if (title === 'Un chant deux coeurs' || title === 'Je m\'accuse') {
+      const source = defaultsByTitle[title];
+
+      if (!source) {
+        return normalizeBook(item, item?.id || `book-${index + 1}`);
+      }
+
+      return normalizeBook({
+        ...item,
+        title,
+        cover: item?.cover || source.cover,
+        summary: source.summary,
+        excerpt: source.excerpt,
+        buyText: source.buyText,
+        buyLink: source.buyLink,
+        pdfLink: source.pdfLink || item?.pdfLink || '',
+        badge: source.badge,
+        disabledBuy: Boolean(source.disabledBuy),
+        createdAt: item?.createdAt || source.createdAt
+      }, item?.id || `book-${index + 1}`);
+    }
+
+    return normalizeBook(item, item?.id || `book-${index + 1}`);
+  });
+
+  window.localStorage.setItem(BOOKS_STORAGE_KEY, JSON.stringify(nextBooks));
+  return nextBooks;
 };
+
+const getBooks = () => syncBooksFromDefaultData();
 
 const createBook = (book) => {
   const books = getBooks();
@@ -207,21 +269,34 @@ const openBookModal = (book) => {
     bookModalBadge.style.display = badgeText ? 'inline-flex' : 'none';
   }
   if (bookModalBuy) {
-    const isDisabled = Boolean(book.disabledBuy);
-    bookModalBuy.textContent = book.buyText || 'Acheter le livre';
-    bookModalBuy.href = isDisabled ? '#' : (book.buyLink || '#');
-    bookModalBuy.classList.toggle('book-buy-btn--disabled', isDisabled);
-    bookModalBuy.setAttribute('aria-disabled', String(isDisabled));
-    bookModalBuy.setAttribute('tabindex', isDisabled ? '-1' : '0');
-    bookModalBuy.onclick = isDisabled
-      ? (event) => event.preventDefault()
-      : null;
-    bookModalBuy.removeAttribute('target');
-    if (!isDisabled) {
+    const hasPdfLink = Boolean(book.pdfLink && String(book.pdfLink).trim());
+
+    if (hasPdfLink) {
+      bookModalBuy.textContent = book.buyText || 'Lire l\'extrait (PDF)';
+      bookModalBuy.href = book.pdfLink;
+      bookModalBuy.classList.remove('book-buy-btn--disabled');
+      bookModalBuy.setAttribute('aria-disabled', 'false');
+      bookModalBuy.setAttribute('tabindex', '0');
+      bookModalBuy.onclick = null;
       bookModalBuy.setAttribute('target', '_blank');
-      bookModalBuy.setAttribute('rel', 'noopener');
+      bookModalBuy.setAttribute('rel', 'noopener noreferrer');
     } else {
-      bookModalBuy.removeAttribute('rel');
+      const isDisabled = Boolean(book.disabledBuy);
+      bookModalBuy.textContent = book.buyText || 'Acheter le livre';
+      bookModalBuy.href = isDisabled ? '#' : (book.buyLink || '#');
+      bookModalBuy.classList.toggle('book-buy-btn--disabled', isDisabled);
+      bookModalBuy.setAttribute('aria-disabled', String(isDisabled));
+      bookModalBuy.setAttribute('tabindex', isDisabled ? '-1' : '0');
+      bookModalBuy.onclick = isDisabled
+        ? (event) => event.preventDefault()
+        : null;
+      bookModalBuy.removeAttribute('target');
+      if (!isDisabled) {
+        bookModalBuy.setAttribute('target', '_blank');
+        bookModalBuy.setAttribute('rel', 'noopener');
+      } else {
+        bookModalBuy.removeAttribute('rel');
+      }
     }
   }
 
