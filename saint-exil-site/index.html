@@ -804,6 +804,85 @@
       }
     }
 
+    @media (min-width: 521px) and (max-width: 1100px) {
+      .hero {
+        min-height: auto;
+        padding: 28px 28px 110px;
+        gap: 24px;
+        overflow: visible;
+      }
+
+      .hero-left {
+        transform: none;
+        max-width: 620px;
+        margin: 0 auto;
+      }
+
+      .hero h1 {
+        font-size: clamp(44px, 8vw, 72px);
+        line-height: 0.92;
+        top: 0;
+        margin-top: 12px;
+      }
+
+      .author-role {
+        margin: 12px auto 22px;
+      }
+
+      .intro {
+        font-size: 16px;
+        max-width: 520px;
+      }
+
+      .cta {
+        top: 0;
+        margin-bottom: 10px;
+      }
+
+      .portrait {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        width: min(62vw, 430px);
+        height: auto;
+        margin-top: 10px;
+        transform: translateX(-60px);
+        align-self: center;
+        justify-self: center;
+        z-index: 4;
+        filter: drop-shadow(-30px 0 42px rgba(0,0,0,.85));
+      }
+
+      .name-bg {
+        right: 8%;
+        top: 42%;
+        font-size: clamp(70px, 12vw, 110px);
+      }
+
+      .quote-card {
+        position: relative;
+        width: min(70vw, 420px);
+        min-height: 160px;
+        padding: 30px 28px;
+        margin-top: -20px;
+        transform: translateX(80px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 8;
+      }
+
+      .quote-card p {
+        font-size: 19px;
+        text-align: center;
+      }
+
+      .bottom-card {
+        margin-top: 28px;
+      }
+    }
+
     /* MOBILE - SMALL PHONE ADJUSTMENTS */
     @media (max-width: 520px) {
       .portrait {
