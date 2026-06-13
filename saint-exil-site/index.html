@@ -151,6 +151,7 @@
       text-align: center;
       z-index: 5;
       margin: 0 auto;
+      transform: translateY(-55px);
     }
 
     .main-blason {
@@ -164,15 +165,40 @@
     }
 
     .hero h1 {
-      font-size: 50px;
-      line-height: 1.02;
+      font-size: clamp(42px, 5.2vw, 76px);
+      line-height: 0.92;
       font-weight: 400;
       position: relative;
-      top: -70px;
-      letter-spacing: clamp(4px, .8vw, 10px);
+      top: -28px;
+      letter-spacing: clamp(5px, .75vw, 12px);
       text-transform: uppercase;
-      color: #c18431;
+      color: #f5efe4;
       text-shadow: 0 8px 18px rgba(0,0,0,.8);
+      margin-bottom: 0;
+    }
+
+    .author-role {
+      margin: -8px auto 22px;
+      color: #d7a83d;
+      font-size: clamp(16px, 1.7vw, 24px);
+      letter-spacing: clamp(8px, 1.1vw, 14px);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(18px, 3vw, 42px);
+    }
+
+    .author-role::before,
+    .author-role::after {
+      content: "";
+      width: clamp(70px, 8vw, 130px);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #d7a83d);
+    }
+
+    .author-role::after {
+      background: linear-gradient(90deg, #d7a83d, transparent);
     }
 
     .subtitle {
@@ -205,10 +231,9 @@
       width: 430px;
       max-width: 80%;
       height: 1px;
-      position: relative;
-      top: -30px;
+      top: -10px;
       background: linear-gradient(90deg, transparent, rgba(215,168,61,.7), transparent);
-      margin: 0 auto 26px;
+      margin: 0 auto 18px;
       position: relative;
     }
 
@@ -225,9 +250,9 @@
     .intro {
       width: 420px;
       max-width: 90%;
-      margin: 0 auto 28px;
+      margin: 0 auto 22px;
       position: relative;
-      top: -40px;
+      top: -18px;
       font-size: 14.5px;
       line-height: 1.45;
       color: #f1e9dc;
@@ -245,7 +270,7 @@
       letter-spacing: 2.5px;
       font-size: 14px;
       position: relative;
-      top:-50px;
+      top: -22px;
       font-family: Arial, sans-serif;
       font-weight: 600;
       border-radius: 4px;
@@ -323,38 +348,54 @@
       position: absolute;
       left: 0;
       bottom: 0;
-      width: 70%;
-      height: 80px;
+
+      width: clamp(720px, 70vw, 1080px);
+      min-height: clamp(82px, 8vw, 120px);
+      height: auto;
+
       background: #f3eee6;
       color: #4b443b;
-      display: flex;
+
+      display: grid;
+      grid-template-columns: auto auto minmax(260px, 520px);
       align-items: center;
-      padding-left: 92px;
+      column-gap: clamp(22px, 3vw, 42px);
+
+      padding: clamp(18px, 2.2vw, 30px)
+               clamp(52px, 7vw, 110px)
+               clamp(18px, 2.2vw, 30px)
+               clamp(56px, 7vw, 92px);
+
       z-index: 10;
       clip-path: polygon(0 0, 91% 0, 100% 100%, 0% 100%);
     }
 
     .bottom-card .feather {
-      font-size: 52px;
+      font-size: clamp(38px, 4vw, 52px);
       opacity: .28;
       color: #b98732;
-      margin-right: 42px;
+      margin: 0;
+      line-height: 1;
     }
 
     .bottom-title {
       color: #c18431;
-      font-size: 15px;
-      letter-spacing: 2px;
+      font-size: clamp(12px, 1vw, 15px);
+      letter-spacing: clamp(1.5px, .18vw, 2.4px);
       text-transform: uppercase;
-      padding-right: 36px;
-      margin-right: 36px;
+
+      padding-right: clamp(18px, 2.2vw, 36px);
+      margin-right: 0;
+
       border-right: 1px solid rgba(100,70,40,.45);
       font-family: Arial, sans-serif;
+      white-space: nowrap;
     }
 
     .bottom-card p {
-      width: 500px;
-      font-size: 16px;
+      width: auto;
+      max-width: 520px;
+      font-size: clamp(13px, 1.05vw, 16px);
       line-height: 1.5;
     }
 
@@ -507,11 +548,23 @@
       }
 
       .hero h1 {
-        font-size: clamp(46px, 12vw, 68px);
-        line-height: 0.95;
-        top: -3px;
-        letter-spacing: 2px;
+        font-size: clamp(42px, 13vw, 66px);
+        line-height: 0.92;
+        top: 0;
+        letter-spacing: 3px;
         margin-top: 18px;
+      }
+
+      .author-role {
+        margin: 14px auto 22px;
+        font-size: 18px;
+        letter-spacing: 9px;
+        gap: 18px;
+      }
+
+      .author-role::before,
+      .author-role::after {
+        width: 70px;
       }
 
       .subtitle {
@@ -782,6 +835,22 @@
         line-height: 1.45;
       }
 
+      .hero h1 {
+        font-size: clamp(36px, 12vw, 54px);
+        line-height: 0.92;
+      }
+
+      .author-role {
+        font-size: 15px;
+        letter-spacing: 7px;
+        gap: 14px;
+      }
+
+      .author-role::before,
+      .author-role::after {
+        width: 50px;
+      }
+
       .papa{
         position:relative;
         top: -47px;
@@ -858,9 +927,11 @@
         <!--<img src="blasons.png" alt="Blason FSE" class="main-blason">-->
 
         <h1>
-          Bienvenue dans<br>
-          L'univers d'Étienne De Saint-Exil
+          Étienne<br>
+          De Saint-Exil
         </h1>
+
+        <div class="author-role">Écrivain</div>
 
         <!--<div class="subtitle">Étienne De Saint-Exil</div>-->
 
