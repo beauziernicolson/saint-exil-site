@@ -57,21 +57,25 @@
 
         <p>Inscrivez-vous pour suivre l’actualité de l’auteur, ses sorties de livres, ses conférences et ses projets artistiques.</p>
 
-        <form class="newsletter-form">
-          <input type="email" placeholder="Votre adresse e-mail" required aria-label="Votre adresse e-mail">        
-  <input
-    type="text"
-    name="firstname"
-    placeholder="Prénom"
-    required
-    aria-label="Prénom">
-
-  <input
-    type="text"
-    name="lastname"
-    placeholder="Nom"
-    required
-    aria-label="Nom">
+        <form class="newsletter-form" novalidate>
+          <input
+            type="text"
+            name="first_name"
+            placeholder="Prénom"
+            required
+            aria-label="Prénom">
+          <input
+            type="text"
+            name="last_name"
+            placeholder="Nom"
+            required
+            aria-label="Nom">
+          <input
+            type="email"
+            name="email"
+            placeholder="Votre adresse e-mail"
+            required
+            aria-label="Votre adresse e-mail">
           <button type="submit">S’abonner</button>
         </form>
 
@@ -137,17 +141,79 @@
   </nav>
 
   <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var form = document.querySelector('.newsletter-form');
       var status = document.getElementById('newsletter-status');
-      if (form && status) {
-        form.addEventListener('submit', function (event) {
-          event.preventDefault();
-          status.textContent = 'Merci pour votre inscription.';
-          status.classList.add('visible');
-        });
+      var submitButton = form ? form.querySelector('button[type="submit"]') : null;
+
+      if (!form || !status || !window.supabase) {
+        return;
       }
+
+      var supabase = window.supabase.createClient(
+        'https://monscfmdauswxscnjciy.supabase.co',
+        'sb_publishable_14RC5-7Q8fippCzi-ryydQ_p8X9mMoX'
+      );
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        var data = {
+          first_name: (form.elements.first_name.value || '').trim(),
+          last_name: (form.elements.last_name.value || '').trim(),
+          email: (form.elements.email.value || '').trim().toLowerCase(),
+          created_at: new Date().toISOString()
+        };
+
+        if (!data.first_name || !data.last_name || !data.email) {
+          status.textContent = 'Une erreur est survenue. Veuillez réessayer.';
+          status.classList.add('visible');
+          return;
+        }
+
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = 'Envoi…';
+        }
+
+        status.textContent = '';
+        status.classList.remove('visible');
+
+        supabase
+          .from('newsletter_subscribers')
+          .insert([data])
+          .then(function (result) {
+            if (result.error) {
+              var isDuplicate = result.error.code === 23505 || /duplicate|already exists|unique/i.test(result.error.message || '');
+              status.textContent = isDuplicate
+                ? 'Cette adresse e-mail est déjà inscrite.'
+                : 'Une erreur est survenue. Veuillez réessayer.';
+              status.classList.add('visible');
+              return;
+            }
+
+            form.reset();
+            status.textContent = 'Merci, votre inscription a bien été enregistrée.';
+            status.classList.add('visible');
+          })
+          .catch(function () {
+            status.textContent = 'Une erreur est survenue. Veuillez réessayer.';
+            status.classList.add('visible');
+          })
+          .finally(function () {
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.textContent = 'S’abonner';
+            }
+          });
+      });
     });
   </script>
 </body>
