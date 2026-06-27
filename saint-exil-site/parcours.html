@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <title>Parcours | Étienne De Saint-Exil</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background: #050403;
+      color: #f5efe4;
+      overflow-x: hidden;
+      padding-bottom: 0;
+    }
+
+    .page {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 30% 45%, rgba(188, 127, 36, 0.18), transparent 35%),
+        radial-gradient(circle at 70% 40%, rgba(255, 255, 255, 0.05), transparent 25%),
+        linear-gradient(90deg, #090704 0%, #050403 45%, #020202 100%);
+      position: relative;
+    }
+
+    .mobile-bottom-nav {
+      display: none;
+    }
+
+    header.navbar {
+      width: min(1180px, 86vw);
+      height: 88px;
+      margin: 0 auto;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      backdrop-filter: none;
+      position: relative;
+      z-index: 50;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #f5efe6;
+      min-width: 270px;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      position: static;
+      left: auto;
+      filter: drop-shadow(0 0 10px rgba(215,168,61,.25));
+    }
+
+    .brand-text h2 {
+      font-size: 20px;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .brand-text span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 7px;
+      color: #d7a83d;
+      font-size: 9px;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .brand-text span::before,
+    .brand-text span::after {
+      content: "";
+      width: 32px;
+      height: 1px;
+      background: #d7a83d;
+      display: block;
+    }
+
+    nav.nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: clamp(28px, 3.4vw, 48px);
+      margin-left: auto;
+    }
+
+    nav.nav-links a {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      color: #f4ede2;
+      text-decoration: none;
+      line-height: 1;
+      position: relative;
+      transition: color .3s ease, transform .3s ease;
+    }
+
+    nav.nav-links a:hover {
+      color: #d7a83d;
+      transform: translateY(-1px);
+    }
+
+    nav.nav-links a.active {
+      color: #d7a83d;
+    }
+
+    nav.nav-links a.active::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -22px;
+      width: 42px;
+      height: 1px;
+      background: #d7a83d;
+      transform: translateX(-50%);
+    }
+
+    .content-wrapper {
+      width: min(900px, 90vw);
+      margin: 0 auto;
+      padding: clamp(60px, 8vw, 100px) clamp(20px, 5vw, 40px);
+      min-height: calc(100vh - 88px);
+    }
+
+    .page-title {
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1.2;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      color: #f5efe4;
+      text-shadow: 0 8px 18px rgba(0,0,0,.8);
+      margin-bottom: clamp(40px, 6vw, 60px);
+      text-align: center;
+    }
+
+    .page-title span {
+      color: #d7a83d;
+    }
+
+    .divider-top {
+      width: 100px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #d7a83d, transparent);
+      margin: 0 auto clamp(30px, 4vw, 50px);
+    }
+
+    .content-card {
+      background: rgba(20, 15, 10, 0.4);
+      border: 1px solid rgba(215, 168, 61, 0.15);
+      border-radius: 8px;
+      padding: clamp(30px, 5vw, 50px);
+      backdrop-filter: blur(8px);
+    }
+
+    .content-card p {
+      font-size: clamp(15px, 1.1vw, 18px);
+      line-height: 1.85;
+      margin-bottom: clamp(20px, 2vw, 32px);
+      color: #f1e9dc;
+      text-align: justify;
+    }
+
+    .content-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .content-card strong {
+      color: #d7a83d;
+      font-weight: 600;
+    }
+
+    .cta-section {
+      display: flex;
+      gap: clamp(16px, 3vw, 24px);
+      justify-content: center;
+      margin-top: clamp(40px, 6vw, 60px);
+      flex-wrap: wrap;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 28px;
+      border: 1px solid #d7a83d;
+      color: #d7a83d;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 13px;
+      font-family: Arial, sans-serif;
+      font-weight: 600;
+      border-radius: 4px;
+      background: rgba(0,0,0,.28);
+      transition: .3s ease;
+      cursor: pointer;
+    }
+
+    .cta-btn:hover {
+      background: #d7a83d;
+      color: #050403;
+    }
+
+    .cta-btn.secondary {
+      border-color: rgba(215, 168, 61, 0.5);
+      color: rgba(215, 168, 61, 0.8);
+    }
+
+    .cta-btn.secondary:hover {
+      border-color: #d7a83d;
+      color: #d7a83d;
+      background: rgba(0,0,0,.5);
+    }
+
+    @media (max-width: 1000px) {
+      header.navbar {
+        width: 90vw;
+        height: 78px;
+        padding: 0;
+      }
+
+      .brand {
+        min-width: auto;
+        gap: 10px;
+      }
+
+      .brand img {
+        width: 34px;
+        height: 34px;
+      }
+
+      .brand-text h2 {
+        font-size: 11px;
+      }
+
+      .brand-text span {
+        font-size: 7px;
+        letter-spacing: 0.32em;
+      }
+
+      .brand-text span::before,
+      .brand-text span::after {
+        width: 20px;
+      }
+
+      .content-wrapper {
+        padding: 40px 20px;
+      }
+
+      .page-title {
+        font-size: 32px;
+        margin-bottom: 30px;
+      }
+
+      .content-card {
+        padding: 30px;
+      }
+
+      .content-card p {
+        font-size: 16px;
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 820px) {
+      body {
+        padding-bottom: 72px;
+      }
+
+      header.navbar {
+        height: 72px;
+      }
+
+      .content-wrapper {
+        padding: 30px 16px;
+        min-height: calc(100vh - 72px);
+      }
+
+      .page-title {
+        font-size: 28px;
+        margin-bottom: 24px;
+      }
+
+      .divider-top {
+        margin-bottom: 24px;
+      }
+
+      .content-card {
+        padding: 24px 20px;
+      }
+
+      .content-card p {
+        font-size: 15px;
+        line-height: 1.75;
+        margin-bottom: 20px;
+      }
+
+      nav.nav-links,
+      .menu-btn,
+      .menu-toggle,
+      .hamburger,
+      .mobile-menu {
+        display: none !important;
+      }
+
+      .mobile-bottom-nav {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 72px;
+        background: rgba(5,5,5,.96);
+        border-top: 1px solid rgba(215,168,61,.18);
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        z-index: 9999;
+        backdrop-filter: blur(12px);
+      }
+
+      .mobile-bottom-nav a {
+        color: rgba(245,239,230,.65);
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        font-size: 12px;
+      }
+
+      .mobile-bottom-nav a.active {
+        color: #d7a83d;
+      }
+
+      .mobile-icon {
+        width: 24px;
+        height: 24px;
+        display: grid;
+        place-items: center;
+        color: currentColor;
+      }
+
+      .mobile-icon svg {
+        width: 23px;
+        height: 23px;
+        display: block;
+        fill: none;
+        stroke: currentColor;
+      }
+
+      .mobile-bottom-nav a.active .mobile-icon svg {
+        stroke: #d7a83d;
+      }
+
+      .mobile-bottom-nav small {
+        font-size: 12px;
+      }
+
+      .cta-section {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .cta-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .page-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .content-card {
+        padding: 20px 16px;
+      }
+
+      .content-card p {
+        font-size: 14px;
+        line-height: 1.7;
+        margin-bottom: 16px;
+      }
+
+      .cta-btn {
+        font-size: 12px;
+        padding: 14px 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <header class="navbar">
+      <div class="brand">
+        <img src="ecusson.png" alt="Logo Étienne De Saint-Exil">
+        <div class="brand-text">
+          <h2>Étienne De Saint-Exil</h2>
+          <span>Écrivain</span>
+        </div>
+      </div>
+
+      <button class="menu-btn" aria-label="Ouvrir le menu">
+        <span></span><span></span>
+      </button>
+
+      <nav class="nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="biography.html">Biographie</a>
+        <a href="parcours.html" class="active">Parcours</a>
+        <a href="oeuvres.html">Œuvres</a>
+        <a href="actualite.html">Actualité</a>
+        <a href="newsletter.html">Newsletter</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <div class="content-wrapper">
+      <h1 class="page-title">Étienne De Saint-Exil :<br><span>Le Parcours d'une Vocation</span></h1>
+      
+      <div class="divider-top"></div>
+
+      <article class="content-card">
+        <p>
+          Le parcours d'Étienne De Saint-Exil ne commence pas dans les livres, mais dans l'émerveillement. Enfant du Cap-Haïtien, il découvre très tôt le pouvoir de la création sous plusieurs formes. À l'École Nationale Mixte de Lafossette, alors qu'il fréquente les 4e, 5e et 6e années fondamentales, il éprouve déjà une fascination pour la langue française. Lorsqu'on l'envoie à la direction chercher de la craie ou divers instruments scolaires, il prend plaisir à construire des phrases élaborées pour s'adresser à la directrice. Bien avant de devenir écrivain, il éprouve déjà le besoin de façonner les mots.
+        </p>
+
+        <p>
+          À cette époque, ses passions se partagent entre le dessin et le chant. Dès l'âge de neuf ans, il réalise des portraits à vif avec une étonnante facilité. Dans son quartier, les habitants s'amusent à le mettre au défi : dessiner un passant, un chien, une scène de rue ou encore un combat de coqs. Chaque défi nourrit son regard et affine son sens de l'observation.
+        </p>
+
+        <p>
+          Parallèlement, il développe ses talents musicaux au sein de la pré-chorale <strong>Jeunes Dévoués du Christ du Sacré-Cœur</strong> de Cap-Haïtien. Âgé d'à peine onze ou douze ans, il impressionne déjà son entourage en improvisant des chants entiers lors des journées de jeûne. Le dessin lui apprend à regarder ; le chant lui apprend à écouter. Sans le savoir, ces deux disciplines préparent le terrain de son futur travail d'écrivain.
+        </p>
+
+        <p>
+          Le véritable déclic survient à treize ans, alors qu'il est élève de 7e année au <strong>Collège Martin Luther King</strong>. Celui qui, quelques années plus tôt, avait écrit au tableau le mot « ons » à la place de la troisième personne du pluriel du verbe avoir — se lance soudain dans une quête passionnée du savoir. Il commence à explorer les documents de son grand frère, souvent bien au-delà de son âge. Caché sous un lit ou installé dans l'arrière-cour familiale, il dévore tout ce qui lui tombe sous la main. Très vite, les ouvrages de référence deviennent ses compagnons favoris : grammaires, dictionnaires, manuels de stylistique et autres livres consacrés à la langue. Sa curiosité devient insatiable. Il ne se contente plus d'apprendre ; il veut comprendre, maîtriser et dépasser.
+        </p>
+
+        <p>
+          Cette passion précoce pour l'écriture trouve rapidement une première concrétisation. En <strong>2005</strong>, il publie <strong>Un Chant Deux Cœurs</strong>, son premier recueil de poésie réalisé en collaboration avec Reynand C. Garçon. Suivent <strong>Fumées sur les îles</strong> en <strong>2009</strong> puis <strong>Je m'accuse</strong> en <strong>2012</strong>.
+        </p>
+
+        <p>
+          Après une longue période de silence éditorial d'environ onze années, Étienne De Saint-Exil revient avec une œuvre qui marque un tournant majeur dans sa carrière. En <strong>2023</strong> paraît <strong>Comme un cimetière debout en moi</strong>, son quatrième livre et premier roman. L'ouvrage lui ouvre les portes de la scène littéraire internationale et l'amène notamment à Paris. Cette publication inaugure une nouvelle étape de son parcours, caractérisée par des collaborations avec plusieurs maisons d'édition parisiennes et une présence croissante dans les salons et festivals littéraires internationaux à travers l'Amérique, l'Europe et l'Afrique.
+        </p>
+
+        <p>
+          Depuis, son œuvre poursuit son chemin entre Haïti et la France, portée par une écriture singulière où la mémoire, l'exil, la douleur et l'espérance dialoguent sans cesse. Aujourd'hui, Étienne De Saint-Exil vit en <strong>Bretagne</strong>, cette région de France dont il admire profondément les paysages, l'histoire et la culture. C'est là qu'il poursuit son travail d'écrivain, fidèle à la vocation née autrefois dans les rues du Cap-Haïtien, dans les salles de classe, entre un crayon, une chanson improvisée et les premiers livres dévorés en secret.
+        </p>
+      </article>
+
+      <div class="cta-section">
+        <a href="index.html" class="cta-btn">← Retour à l'Accueil</a>
+        <a href="oeuvres.html" class="cta-btn secondary">Découvrir ses Œuvres →</a>
+      </div>
+    </div>
+
+  </main>
+
+  <nav class="mobile-bottom-nav">
+    <a href="index.html">
+      <span class="mobile-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house-icon lucide-house"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+      </span>
+      <small>Accueil</small>
+    </a>
+    <a href="biography.html">
+      <span class="mobile-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </span>
+      <small>Biographie</small>
+    </a>
+    
+    <a href="oeuvres.html">
+      <span class="mobile-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-icon lucide-book-open"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+      </span>
+      <small>Œuvres</small>
+    </a>
+    <a href="actualite.html">
+      <span class="mobile-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-newspaper-icon lucide-newspaper"><path d="M15 18h-5"/><path d="M18 14h-8"/><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-4 0v-9a2 2 0 0 1 2-2h2"/><rect width="8" height="4" x="10" y="6" rx="1"/></svg>
+      </span>
+      <small>Actualité</small>
+    </a>
+    <a href="newsletter.html">
+      <span class="mobile-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="24"
+             height="24"
+             viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="2"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             class="lucide lucide-mails-icon lucide-mails">
+          <path d="M17 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 1-1.732"/>
+          <path d="m22 5.5-6.419 4.179a2 2 0 0 1-2.162 0L7 5.5"/>
+          <rect x="7" y="3" width="15" height="12" rx="2"/>
+        </svg>
+      </span>
+      <small>Newsletter</small>
+    </a>
+    <a href="contact.html">
+      <span class="mobile-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
+      </span>
+      <small>Contact</small>
+    </a>
+  </nav>
+</body>
+</html>
